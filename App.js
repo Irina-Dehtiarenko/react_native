@@ -4,11 +4,18 @@ import {
   View,
   Text,
   TextInput,
+  Button,
 } from 'react-native';
 
 const App = () => {
 
   const [name, SetName] = useState('');
+  const [submit, setSubmit] = useState(false)
+
+  const onPressHandler = () => {
+    console.log(submit)
+    setSubmit(!submit);
+  }
 
   return (
     <View style={styles.body}>
@@ -17,11 +24,23 @@ const App = () => {
       </Text>
       <TextInput
         style={styles.input}
-        placeholder='e.g. John'
+        placeholder='write name'
         onChangeText={(value) => SetName(value)}
+      //multiline - wieloliniowy
+      //keyboardType='numerric' - tylko cyfry wpisuje
+      //maxLength={6}//długość max
+      // value={'To jest wartość inputa'}
+      // editable={false} - edytować imput value
+      //secureTextEntry //hasła
+      />
+      <Button
+        title={submit ? 'Clear' : 'Submit'}
+        onPress={onPressHandler}
+        color='#00f'
+      //disabled={submit}//przycisk niedostępny
       />
       <Text style={styles.text}>
-        Your name is: {name}
+        You are registred as {name}
       </Text>
     </View>
   );
