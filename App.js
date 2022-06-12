@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   Button,
+  TouchableOpacity,
 } from 'react-native';
 
 const App = () => {
@@ -33,15 +34,24 @@ const App = () => {
       // editable={false} - edytować imput value
       //secureTextEntry //hasła
       />
-      <Button
+
+      <TouchableOpacity style={styles.button}
+        onPress={onPressHandler}>
+        <Text style={styles.text}>
+          {submit ? 'Crear' : 'Submit'}
+        </Text>
+      </TouchableOpacity>
+
+      {/* <Button
         title={submit ? 'Clear' : 'Submit'}
         onPress={onPressHandler}
         color='#00f'
       //disabled={submit}//przycisk niedostępny
-      />
-      <Text style={styles.text}>
-        You are registred as {name}
-      </Text>
+      /> */}
+      {
+        submit ? <Text style={styles.text}>
+          You are registreted as {name}</Text> : null
+      }
     </View>
   );
 };
@@ -58,6 +68,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   input: {
+    margin: 10,
     width: 200,
     borderWidth: 1,
     borderColor: '#555',
@@ -65,6 +76,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
   },
+
 });
 
 export default App;
