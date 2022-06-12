@@ -14,6 +14,7 @@ import {
   ImageBackground,
 
 } from 'react-native';
+import Header from './Header';
 import NewButton from './NewButton';
 //
 const App = () => {
@@ -42,7 +43,7 @@ const App = () => {
       //działa jak tło Appki
       source={{ uri: 'https://cdn.pixabay.com/photo/2017/02/15/10/57/pizza-2068272_960_720.jpg' }}>
 
-
+      <Header />
 
       <Text style={styles.text}>
         Please write your name:
