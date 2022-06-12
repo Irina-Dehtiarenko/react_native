@@ -10,6 +10,9 @@ import {
   Pressable,
   Alert,
   ToastAndroid,
+  Image,
+  ImageBackground,
+
 } from 'react-native';
 
 const App = () => {
@@ -23,19 +26,23 @@ const App = () => {
     }
     else {
       /*  Alert.alert('Warning', 'The name must be longer than 3 characters')
-       //Raki sobie alert, który informuje o warunkach */
+       //Taki sobie alert, który informuje o warunkach */
 
       ToastAndroid.show('The must be longer than 3 charakters', ToastAndroid.LONG)
       //albo SHORT, zalży jak długo to okienko powinno się wyświetlać
       //alert  na dole małe
 
     }
-    console.log(submit)
-    setSubmit(!submit);
   }
 
   return (
-    <View style={styles.body}>
+    <View style={styles.body}
+      // <ImageBackground style={styles.body}
+      //działa jak tło Appki
+      source={{ uri: 'https://cdn.pixabay.com/photo/2017/02/15/10/57/pizza-2068272_960_720.jpg' }}>
+
+
+
       <Text style={styles.text}>
         Please write your name:
       </Text>
@@ -52,6 +59,7 @@ const App = () => {
       />
 
 
+      {/* Wariant przycisku 1 */}
 
 
       {/* <Button
@@ -62,7 +70,7 @@ const App = () => {
       /> */}
 
 
-
+      {/* Wariant przycisku 2 */}
 
       {/*  <TouchableOpacity style={styles.button}//zamiast przycisku
         onPress={onPressHandler}
@@ -75,6 +83,8 @@ const App = () => {
 
  */}
 
+
+      {/* Wariant przycisku 3 */}
 
       {/* 
       <TouchableHighlight
@@ -90,19 +100,20 @@ const App = () => {
  */}
 
 
+      {/* Wariant przycisku 4 - najlepszy, ponieważ możemy zmieniać jak długo musi użytkownik wciskać ten przycisk, zanim się wykona jakaś funkcja */}
 
       <Pressable
         style={({ pressed }) => [
           { backgroundColor: pressed ? '#ddd' : '#0f0' }, styles.button
         ]}
+        //za pomocą wrzucania  takiej funkcii możemy osobno zmieniać jakieś style za pomocą kodu JS
+        //również można użuwać onPress
         onLongPress={onPressHandler}
         // Płynny przycisk
         delayLongPress={300}
-        //prędkość naciskania
+        //długość wciskania przycisku
         hitSlop={{ top: 10, bottom: 10, right: 10, left: 10 }}
-      //rozszerza kliknięcie poza ramki buttona
-
-
+      //rozszerza przestrzeń kliknięcia poza ramki buttona
       >
         <Text style={styles.text}>
           {submit ? 'Crear' : 'Submit'}
@@ -110,12 +121,32 @@ const App = () => {
       </Pressable>
 
       {
-        submit ? <Text style={styles.text}>
-          You are registreted as {name}</Text> : null
+        submit ? <View style={styles.body}>
+
+          <Text style={styles.text}>
+            You are registreted as {name}
+          </Text>
+          <Image
+            source={require('./assets/done.png')}
+            style={styles.image}
+            resizeMode={'stretch'}
+          />
+
+        </View> :
+          <Image
+            source={require('./assets/error.png')}
+            style={styles.image}
+            resizeMode={'stretch'}
+          />
       }
+      {/* </ImageBackground> */}
     </View>
+
   );
 };
+
+
+
 
 const styles = StyleSheet.create({
   body: {
@@ -142,6 +173,12 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: 'center',
 
+
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 10,
 
   }
 
