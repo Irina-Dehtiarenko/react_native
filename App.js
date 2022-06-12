@@ -14,7 +14,8 @@ import {
   ImageBackground,
 
 } from 'react-native';
-
+import NewButton from './NewButton';
+//
 const App = () => {
 
   const [name, SetName] = useState('');
@@ -100,25 +101,13 @@ const App = () => {
  */}
 
 
-      {/* Wariant przycisku 4 - najlepszy, ponieważ możemy zmieniać jak długo musi użytkownik wciskać ten przycisk, zanim się wykona jakaś funkcja */}
 
-      <Pressable
-        style={({ pressed }) => [
-          { backgroundColor: pressed ? '#ddd' : '#0f0' }, styles.button
-        ]}
-        //za pomocą wrzucania  takiej funkcii możemy osobno zmieniać jakieś style za pomocą kodu JS
-        //również można użuwać onPress
-        onLongPress={onPressHandler}
-        // Płynny przycisk
-        delayLongPress={300}
-        //długość wciskania przycisku
-        hitSlop={{ top: 10, bottom: 10, right: 10, left: 10 }}
-      //rozszerza przestrzeń kliknięcia poza ramki buttona
-      >
-        <Text style={styles.text}>
-          {submit ? 'Crear' : 'Submit'}
-        </Text>
-      </Pressable>
+      <NewButton
+        title={submit ? "Clear" : "Submit"}
+        onPressFunction={onPressHandler}
+        //leci do objektu props
+        style={{}}
+      />
 
       {
         submit ? <View style={styles.body}>
